@@ -45,7 +45,6 @@ app.post('/api/create-team', async (req, res) => {
     }
 });
 
-// server.js (backend)
 
 app.post('/api/teams', async (req, res) => {
     try {
@@ -58,9 +57,6 @@ app.post('/api/teams', async (req, res) => {
   
       const result = await TeamsCollection.insertOne(newTeam);
       res.status(201).json({ message: 'Team created successfully', result });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to create team' });
     }
   });
   
@@ -71,7 +67,6 @@ app.get('/api/teams', async (req, res) => {
       
       const teams = await TeamsCollection.find({}).toArray();
       
-      // Return the teams in the response
       res.status(200).json(teams);
     } catch (err) {
       console.error(err);
