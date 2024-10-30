@@ -9,7 +9,7 @@ const Teams = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/teams');
+        const response = await axios.get(`${PORT}/api/teams`);
         setTeams(response.data);
         if (response.data.length === 0) {
           setError('No teams available');

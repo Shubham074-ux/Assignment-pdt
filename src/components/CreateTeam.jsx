@@ -9,7 +9,7 @@ const CreateTeam = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/create-team');
+        const response = await axios.get(`${PORT}/api/create-team`);
         setPlayers(response.data);
         if (response.data.length === 0) {
           setError('No player available');
@@ -34,13 +34,15 @@ const CreateTeam = () => {
 
     const postTeamToBackend = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/teams', {
+      const response = await axios.post(`${PORT}/api/teams`, {
         team: teamarr,
       });
 
       console.log('Team successfully posted:', response.data);
       setteamarr([]);
-    } 
+    } catch(err){
+      console.error(err);
+    }
   };
 
   // Once team reaches 11 players, send to backend and reset team
