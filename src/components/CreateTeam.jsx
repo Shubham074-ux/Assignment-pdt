@@ -37,7 +37,7 @@ const CreateTeam = () => {
 
     const postTeamToBackend = async () => {
     try {
-      const response = await axios.post(`${apiUrl}/api/teams`, {
+      const response = await axios.post("https://assignment-pdt-back.onrender.com/api/teams", {
         team: teamarr,
       });
 
