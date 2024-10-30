@@ -1,6 +1,9 @@
  import React from 'react'
 import { useState } from 'react';
 import axios from 'axios'
+const apiUrl = import.meta.env.VITE_API_PORT;
+console.log(apiUrl)
+
 const Homepage = () => {
   
   const [formData, setFormData] = useState({
@@ -30,11 +33,12 @@ const Homepage = () => {
     
 
     try {
-      const response = await axios.post(`${PORT}/api/create-team`, data, {
+      const response = await axios.post(`${apiUrl}/api/create-team`, data, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
+      
       // console.log('Product added successfully', response.data);
       console.log(response.data);
       setFormData({

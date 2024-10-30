@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_PORT;
+
+console.log('API URL:', apiUrl);
 
 const CreateTeam = () => {
   const [players, setPlayers] = useState([]);
@@ -9,7 +12,7 @@ const CreateTeam = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get(`${PORT}/api/create-team`);
+        const response = await axios.get(`${apiUrl}/api/create-team`);
         setPlayers(response.data);
         if (response.data.length === 0) {
           setError('No player available');
@@ -34,7 +37,7 @@ const CreateTeam = () => {
 
     const postTeamToBackend = async () => {
     try {
-      const response = await axios.post(`${PORT}/api/teams`, {
+      const response = await axios.post(`${apiUrl}/api/teams`, {
         team: teamarr,
       });
 

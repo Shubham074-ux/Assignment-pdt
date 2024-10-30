@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_PORT;
+console.log("env cint",import.meta.env);
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
@@ -9,7 +11,7 @@ const Teams = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get(`${PORT}/api/teams`);
+        const response = await axios.get(`${apiUrl}/api/teams`);
         setTeams(response.data);
         if (response.data.length === 0) {
           setError('No teams available');
