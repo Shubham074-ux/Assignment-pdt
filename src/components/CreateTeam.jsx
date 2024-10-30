@@ -12,7 +12,7 @@ const CreateTeam = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/create-team`);
+        const response = await axios.get("https://assignment-pdt-back.onrender.com/api/create-team");
         setPlayers(response.data);
         if (response.data.length === 0) {
           setError('No player available');
