@@ -30,13 +30,13 @@ async function connectToDatabase() {
     console.log('Connected to MongoDB');
     db = client.db(dbName); // Store the database reference
 }
-
+//connecttion to db
 connectToDatabase().catch(console.error); // Call this once on startup
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
-
+//send players data to /api/create-team and create-team collection of db
 app.post('/api/create-team', async (req, res) => {
     try {
         const PlayersCollection = db.collection('create-team');
@@ -53,8 +53,7 @@ app.post('/api/create-team', async (req, res) => {
     }
 });
 
-// server.js (backend)
-
+//to send data to /api/teams and in teams collection of mongodb
 app.post('/api/teams', async (req, res) => {
     try {
     //   const db = await connectToDatabase();
@@ -66,12 +65,9 @@ app.post('/api/teams', async (req, res) => {
   
       const result = await TeamsCollection.insertOne(newTeam);
       res.status(201).json({ message: 'Team created successfully', result });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to create team' });
     }
   });
-  
+  //fetch data of teams from db
 app.get('/api/teams', async (req, res) => {
     try {
     //   const db = await connectToDatabase();
@@ -79,7 +75,6 @@ app.get('/api/teams', async (req, res) => {
       
       const teams = await TeamsCollection.find({}).toArray();
       
-      // Return the teams in the response
       res.status(200).json(teams);
     } catch (err) {
       console.error(err);
@@ -87,7 +82,7 @@ app.get('/api/teams', async (req, res) => {
     }
   });
   
-
+//fetch data about players from db
   app.get('/api/create-team', async (req, res) => {
     try {
         const PlayersCollection = db.collection('create-team');

@@ -5,8 +5,7 @@ const CreateTeam = () => {
   const [players, setPlayers] = useState([]);
   const [teamarr, setteamarr] = useState([]);  // Currently selected team (max 11 players)
   const [error, setError] = useState(null);
-
-  // Fetching players from backend
+//fetch data of player from backend
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -23,31 +22,25 @@ const CreateTeam = () => {
     fetchPlayers();
   }, []);
 
-  // Handle adding a player to the team
   const handleAddPlayer = (player) => {
     if (teamarr.length < 11) {
       setteamarr((prev) => [...prev, player]);
     }
   };
 
-  // Handle removing a player from the team
   const handleRemovePlayer = (player) => {
     setteamarr((prev) => prev.filter((p) => p.PlayerName !== player.PlayerName));
   };
 
-  // Function to post team to the backend
-  const postTeamToBackend = async () => {
+    const postTeamToBackend = async () => {
     try {
       const response = await axios.post('http://localhost:3000/api/teams', {
         team: teamarr,
       });
 
       console.log('Team successfully posted:', response.data);
-      // Clear teamarr after posting
       setteamarr([]);
-    } catch (error) {
-      console.error('Error posting team:', error);
-    }
+    } 
   };
 
   // Once team reaches 11 players, send to backend and reset team
@@ -57,7 +50,6 @@ const CreateTeam = () => {
     }
   }, [teamarr]);
 
-  // Check if a player is already added to the team
   const isPlayerAdded = (player) => {
     return teamarr.some((p) => p.PlayerName === player.PlayerName);
   };
@@ -84,8 +76,6 @@ const CreateTeam = () => {
                   <p className='text-3xl'>Name: {player.PlayerName}</p>
                   <p className='text-3xl'>Points: {player.points}</p>
                   <p style={{ color: 'white' }} className='text-xl'>({player.description})</p>
-                  
-                  {/* Add/Remove button logic */}
                   {isPlayerAdded(player) ? (
                     <button
                       className='text-red-500 mt-2 bg-transparent border border-red-500 p-2 rounded'
@@ -111,7 +101,6 @@ const CreateTeam = () => {
         </div>
       )}
 
-      {/* Show selected team */}
       <div className='mt-5'>
         <h3 className='text-2xl'>Current Team (Max 11 players):</h3>
         <ul>

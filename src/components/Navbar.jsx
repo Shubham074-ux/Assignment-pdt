@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // const navigate = useNavigate();
 
 //   const handleCreateClick = () => {
-//     navigate('/create-team'); // Navigate to Create page
+//     navigate('/create-team'); 
 //   };
 
 const Navbar = () => {
