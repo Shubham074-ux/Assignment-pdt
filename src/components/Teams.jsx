@@ -5,7 +5,7 @@ const Teams = () => {
   const [teams, setTeams] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch teams from backend on component mount
+  // Fetch teams from backend on component 
   useEffect(() => {
     const fetchTeams = async () => {
       try {

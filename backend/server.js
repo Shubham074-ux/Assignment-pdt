@@ -1,7 +1,8 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const { MongoClient ,ServerApiVersion } = require('mongodb');
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
+require('dotenv').config();
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -12,12 +13,19 @@ app.use(cors({
     allowedHeaders: ['Content-Type']
 }));
 
-const uri = 'mongodb://localhost:27017'; // Consider moving to an env variable
+// const uri = '';
+const uri = process.env.MONGODB_URI;
 const dbName = 'Dream11';
 let db;
 
 async function connectToDatabase() {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
     await client.connect();
     console.log('Connected to MongoDB');
     db = client.db(dbName); // Store the database reference
