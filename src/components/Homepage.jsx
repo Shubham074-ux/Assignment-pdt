@@ -33,7 +33,7 @@ const Homepage = () => {
     
 
     try {
-      const response = await axios.post(`${apiUrl}/api/create-team`, data, {
+      const response = await axios.post("https://assignment-pdt-back.onrender.com/api/create-team", data, {
         headers: {
           'Content-Type': 'application/json',
         },
