@@ -65,8 +65,11 @@ app.post('/api/teams', async (req, res) => {
   
       const result = await TeamsCollection.insertOne(newTeam);
       res.status(201).json({ message: 'Team created successfully', result });
-    }
-  });
+    }catch(err){console.error(err);
+      res.status(500).json({ error: 'Failed to upload members' });
+  
+  
+  }  });
   //fetch data of teams from db
 app.get('/api/teams', async (req, res) => {
     try {
