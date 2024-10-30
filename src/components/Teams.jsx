@@ -11,7 +11,7 @@ const Teams = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/teams`);
+        const response = await axios.get("https://assignment-pdt-back.onrender.com/api/teams");
         setTeams(response.data);
         if (response.data.length === 0) {
           setError('No teams available');
